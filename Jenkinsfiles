@@ -2,22 +2,28 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Checking out from Git...'
-            }
-        }
-
         stage('Build') {
             steps {
-                echo 'Building project from Jenkinsfile...'
+                echo 'Building project...'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests from Jenkinsfile...'
+                echo 'Running tests...'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build Successful'
+        }
+        failure {
+            echo 'Build Failed'
+        }
+        always {
+            echo 'Pipeline Execution Completed'
         }
     }
 }
